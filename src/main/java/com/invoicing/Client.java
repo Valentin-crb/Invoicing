@@ -1,8 +1,13 @@
 package com.invoicing;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
 import java.util.Objects;
 
+@Entity
 public class Client {
+    @Id
     private int id;
     private String name;
     private String taxId;
