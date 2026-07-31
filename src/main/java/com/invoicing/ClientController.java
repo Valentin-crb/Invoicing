@@ -10,11 +10,14 @@ import java.util.List;
 @RequestMapping("api/clients")
 public class ClientController {
 
+    private final ClientService clientService;
+
+    public ClientController(ClientService clientService) {
+        this.clientService = clientService;
+    }
+
     @GetMapping
     public List<Client> getClients(){
-        return List.of(
-                new Client(1, "Andrei", "1900101123456", "andrei@gmail.com"),
-                new Client(2, "Marius", "1950510273456", "marius@gmail.com")
-        );
+        return clientService.getAllClients();
     }
 }
