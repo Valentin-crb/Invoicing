@@ -1,8 +1,11 @@
 package com.invoicing;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,4 +23,17 @@ public class ClientController {
     public List<Client> getClients(){
         return clientService.getAllClients();
     }
+
+    @PostMapping
+    public ResponseEntity<Client> createNewClient(@Valid @RequestBody Client client){
+        Client saved = clientService.createClient(client);
+        return ResponseEntity.status(HttpStatus.CREATED).body(saved);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Client> getClientById(@PathVariable Integer id){
+        return ResponseEntity.ok(clientService.getClientById(id));
+    }
+
+
 }

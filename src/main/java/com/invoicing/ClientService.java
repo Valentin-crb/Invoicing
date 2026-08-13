@@ -15,4 +15,13 @@ public class ClientService {
     public List<Client> getAllClients(){
         return clientRepository.findAll();
     }
+
+    public Client createClient(Client client){
+        return clientRepository.save(client);
+    }
+
+    public Client getClientById(Integer id) {
+        return clientRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Id-ul " + id + " nu a fost gasit"));
+    }
 }

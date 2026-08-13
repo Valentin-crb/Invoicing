@@ -1,33 +1,48 @@
 package com.invoicing;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+import org.antlr.v4.runtime.misc.NotNull;
 
 import java.util.Objects;
 
 @Entity
 public class Client {
     @Id
-    private int id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @NotBlank(message = "Numele nu poate fi gol")
     private String name;
+
+    @NotBlank(message = "Codul fiscal nu poate fi gol")
+    @Size(min = 2, max = 13, message = "Codul fiscal trebuie sa aiba intre 2 si 13 caractere")
     private String taxId;
+
+    @NotBlank(message = "Email-ul nu poate fi gol")
+    @Email(message = "Email invalid")
     private String email;
 
     public Client() {
     }
 
-    public Client(int id, String name, String taxId, String email) {
+    public Client(Long id, String name, String taxId, String email) {
         this.id = id;
         this.name = name;
         this.taxId = taxId;
         this.email = email;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
