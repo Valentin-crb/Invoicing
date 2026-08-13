@@ -1,5 +1,6 @@
 package com.invoicing;
 
+import org.jspecify.annotations.Nullable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,5 +24,20 @@ public class ClientService {
     public Client getClientById(Integer id) {
         return clientRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Id-ul " + id + " nu a fost gasit"));
+    }
+
+    public Client updateClientById(Integer id, Client updatedClient) {
+        Client existent = clientRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Id-ul " + id + " nu a fost gasit"));
+
+        existent.setName(updatedClient.getName());
+        existent.setEmail(updatedClient.getEmail());
+        existent.setTaxId(updatedClient.getTaxId());
+
+        return clientRepository.save(existent);
+    }
+
+    public void deleteClient(Integer id) {
+        clientRepository.deleteById(id);
     }
 }

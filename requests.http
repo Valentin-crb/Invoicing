@@ -2,9 +2,6 @@
 GET http://localhost:8080
 
 ###
-GET http://localhost:8080/api/clients/2
-
-###
 GET http://localhost:8080/api/clients
 ###
 POST http://localhost:8080/api/clients
@@ -15,3 +12,16 @@ Content-Type: application/json
   "taxId": "1232523523",
   "email": "andrei@yahoo.com"
 }
+
+###update client
+PUT http://localhost:8080/api/clients/1
+Content-Type: application/json
+
+{
+  "name": "andrei modificat",
+  "taxId": "999993",
+  "email": "andrei.nou@yahoo.com"
+}
+
+###stergere client
+DELETE http://localhost:8080/api/clients/1
