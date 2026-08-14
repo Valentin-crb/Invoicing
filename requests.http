@@ -25,3 +25,31 @@ Content-Type: application/json
 
 ###stergere client
 DELETE http://localhost:8080/api/clients/1
+
+
+
+###produse
+GET http://localhost:8080/api/products
+
+###creare produs
+POST http://localhost:8080/api/products
+Content-Type: application/json
+
+{
+  "name": "curent",
+  "unitPrice": "2.67",
+  "vatRate": "0.5"
+}
+
+###editare produs
+PUT http://localhost:8080/api/products/2
+Content-Type: application/json
+
+{
+  "name": "gaz",
+  "unitPrice": "4.2",
+  "vatRate": "1.2"
+}
+
+###stergere produs
+DELETE http://localhost:8080/api/products/2
