@@ -1,10 +1,15 @@
 package com.invoicing;
 
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
+
 import java.math.BigDecimal;
 
 public class InvoiceLineRequest {
 
+    @NotNull(message = "clientId este obligatoriu")
     private Integer productId;
+    @Min(value = 1, message = "Cantitatea trebuie sa fie cel putin 1")
     private Integer quantity;
 
     public InvoiceLineRequest() {

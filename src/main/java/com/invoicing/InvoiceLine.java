@@ -1,5 +1,6 @@
 package com.invoicing;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
@@ -11,6 +12,7 @@ public class InvoiceLine {
     private Integer id;
 
     @ManyToOne
+    @JsonBackReference
     private Invoice invoice;
 
     @ManyToOne

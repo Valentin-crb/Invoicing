@@ -1,9 +1,9 @@
 ### GET request to example server
 GET http://localhost:8080
 
-###
+###clienti
 GET http://localhost:8080/api/clients
-###
+###creare client
 POST http://localhost:8080/api/clients
 Content-Type: application/json
 
@@ -56,3 +56,14 @@ DELETE http://localhost:8080/api/products/2
 
 ###invoice
 GET http://localhost:8080/api/invoices
+
+###creare invoice
+POST http://localhost:8080/api/invoices
+Content-Type: application/json
+
+{
+  "clientId": 1,
+  "invoiceLineRequestList": [
+    { "productId": 1, "quantity": 2 }
+  ]
+}

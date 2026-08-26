@@ -1,5 +1,6 @@
 package com.invoicing;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -14,7 +15,8 @@ public class Invoice {
     @ManyToOne
     private Client client;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<InvoiceLine> invoiceLine;
 
     private InvoiceStatus invoiceStatus;

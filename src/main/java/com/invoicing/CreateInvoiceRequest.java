@@ -1,10 +1,17 @@
 package com.invoicing;
 
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+
 import java.util.List;
 
 public class CreateInvoiceRequest {
 
+    @NotNull(message = "clientId este obligatoriu")
     private Integer clientId;
+    @NotEmpty(message = "Factura trebuie sa contina cel putin o linie")
+    @Valid
     private List<InvoiceLineRequest> invoiceLineRequestList;
 
     public CreateInvoiceRequest() {
