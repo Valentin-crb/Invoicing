@@ -1,5 +1,6 @@
 package com.invoicing;
 
+import org.jspecify.annotations.Nullable;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -47,5 +48,19 @@ public class InvoiceService {
         invoice.setInvoiceStatus(InvoiceStatus.PENDING);
         invoice.setDate(LocalDate.now());
         return invoiceRepository.save(invoice);
+    }
+
+
+    public Invoice getInvoice(Integer id) {
+        return invoiceRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Factura cu id " + id + " nu a fost gasita"));
+    }
+
+    public Invoice updateInvoiceStatus(Integer id, InvoiceStatusRequest request){
+        Invoice deSchimbat = invoiceRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Factura cu id " + id + " nu a fost gasita"));
+        deSchimbat.setInvoiceStatus(request.getStatus());
+        invoiceRepository.save(deSchimbat);
+        return deSchimbat;
     }
 }

@@ -54,7 +54,7 @@ Content-Type: application/json
 ###stergere produs
 DELETE http://localhost:8080/api/products/2
 
-###invoice
+###facturi
 GET http://localhost:8080/api/invoices
 
 ###creare invoice
@@ -66,4 +66,12 @@ Content-Type: application/json
   "invoiceLineRequestList": [
     { "productId": 1, "quantity": 2 }
   ]
+}
+
+###update invoice status
+PATCH http://localhost:8080/api/invoices/5/status
+Content-Type: application/json
+
+{
+  "status": "PAID"
 }
