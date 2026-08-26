@@ -16,14 +16,14 @@ public class InvoiceLine {
     @ManyToOne
     private Product product;
 
-    private BigDecimal quantity;
+    private Integer quantity;
     private  BigDecimal price;
 
     public InvoiceLine() {
     }
 
 
-    public InvoiceLine(Integer id, Invoice invoice, Product product, BigDecimal quantity, BigDecimal price) {
+    public InvoiceLine(Integer id, Invoice invoice, Product product, Integer quantity, BigDecimal price) {
         this.id = id;
         this.invoice = invoice;
         this.product = product;
@@ -47,11 +47,11 @@ public class InvoiceLine {
         this.product = product;
     }
 
-    public BigDecimal getQuantity() {
+    public Integer getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(BigDecimal quantity) {
+    public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
 
