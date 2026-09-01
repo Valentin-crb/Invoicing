@@ -1,6 +1,7 @@
-package com.invoicing;
+package com.invoicing.invoice;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.invoicing.client.Client;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;

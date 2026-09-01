@@ -1,5 +1,6 @@
-package com.invoicing;
+package com.invoicing.product;
 
+import com.invoicing.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,12 +24,12 @@ public class ProductService {
 
     public Product getProductById(Integer id) {
         return productRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Produsul cu id " + id + " nu a fost gasit"));
+                .orElseThrow(() -> new ResourceNotFoundException("Produsul cu id " + id + " nu a fost gasit"));
     }
 
     public Product updateProductById(Integer id, Product updatedProduct) {
         Product modificat = productRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Produsul cu id " + id + " nu a fost gasit"));
+                .orElseThrow(() -> new ResourceNotFoundException("Produsul cu id " + id + " nu a fost gasit"));
 
         modificat.setName(updatedProduct.getName());
         modificat.setUnitPrice(updatedProduct.getUnitPrice());

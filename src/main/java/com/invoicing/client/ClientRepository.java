@@ -1,4 +1,4 @@
-package com.invoicing;
+package com.invoicing.client;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

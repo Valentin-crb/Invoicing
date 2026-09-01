@@ -1,4 +1,4 @@
-package com.invoicing;
+package com.invoicing.invoice;
 
 import jakarta.validation.constraints.NotNull;
 

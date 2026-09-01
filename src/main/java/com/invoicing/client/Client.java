@@ -1,4 +1,4 @@
-package com.invoicing;
+package com.invoicing.client;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

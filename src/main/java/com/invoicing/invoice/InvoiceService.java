@@ -1,6 +1,11 @@
-package com.invoicing;
+package com.invoicing.invoice;
 
-import org.jspecify.annotations.Nullable;
+import com.invoicing.product.Product;
+import com.invoicing.product.ProductRepository;
+import com.invoicing.ResourceNotFoundException;
+import com.invoicing.client.Client;
+import com.invoicing.client.ClientRepository;
+import com.invoicing.client.CreateInvoiceRequest;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -53,12 +58,12 @@ public class InvoiceService {
 
     public Invoice getInvoice(Integer id) {
         return invoiceRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Factura cu id " + id + " nu a fost gasita"));
+                .orElseThrow(() -> new ResourceNotFoundException("Factura cu id " + id + " nu a fost gasita"));
     }
 
     public Invoice updateInvoiceStatus(Integer id, InvoiceStatusRequest request){
         Invoice deSchimbat = invoiceRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Factura cu id " + id + " nu a fost gasita"));
+                .orElseThrow(() -> new ResourceNotFoundException("Factura cu id " + id + " nu a fost gasita"));
         deSchimbat.setInvoiceStatus(request.getStatus());
         invoiceRepository.save(deSchimbat);
         return deSchimbat;

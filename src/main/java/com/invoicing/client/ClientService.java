@@ -1,6 +1,6 @@
-package com.invoicing;
+package com.invoicing.client;
 
-import org.jspecify.annotations.Nullable;
+import com.invoicing.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,12 +23,12 @@ public class ClientService {
 
     public Client getClientById(Integer id) {
         return clientRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Id-ul " + id + " nu a fost gasit"));
+                .orElseThrow(() -> new ResourceNotFoundException("Id-ul " + id + " nu a fost gasit"));
     }
 
     public Client updateClientById(Integer id, Client updatedClient) {
         Client existent = clientRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Id-ul " + id + " nu a fost gasit"));
+                .orElseThrow(() -> new ResourceNotFoundException("Id-ul " + id + " nu a fost gasit"));
 
         existent.setName(updatedClient.getName());
         existent.setEmail(updatedClient.getEmail());

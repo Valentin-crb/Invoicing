@@ -1,6 +1,6 @@
-package com.invoicing;
+package com.invoicing.invoice;
 
-import jakarta.persistence.criteria.CriteriaBuilder;
+import com.invoicing.client.CreateInvoiceRequest;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -1,6 +1,7 @@
-package com.invoicing;
+package com.invoicing.invoice;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.invoicing.product.Product;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;

@@ -1,4 +1,4 @@
-package com.invoicing;
+package com.invoicing.product;
 
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;

@@ -1,5 +1,6 @@
-package com.invoicing;
+package com.invoicing.client;
 
+import com.invoicing.invoice.InvoiceLineRequest;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
