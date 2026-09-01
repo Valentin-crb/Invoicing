@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Facturi — Invoicing</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <div class="page">
+    <header class="masthead">
+      <h1>Registru de facturi</h1>
+      <span class="ledger-no" id="invoice-count"></span>
+    </header>
+
+    <nav class="tabs">
+      <a href="/index.html" class="active">Facturi</a>
+      <a href="/clienti.html">Clienți</a>
+      <a href="/produse.html">Produse</a>
+    </nav>
+
+    <div class="message" id="msg"></div>
+
+    <section>
+      <h2>Factură nouă</h2>
+
+      <div class="field">
+        <label for="client-select">Client</label>
+        <select id="client-select"></select>
+      </div>
+
+      <div id="lines-container"></div>
+
+      <button type="button" class="link" id="add-line">+ adaugă linie</button>
+
+      <div class="total-row">
+        <span class="label">Total</span>
+        <span class="amount" id="total-amount">0.00 lei</span>
+      </div>
+
+      <div style="margin-top: 20px;">
+        <button type="button" id="submit-invoice">Emite factura</button>
+      </div>
+    </section>
+
+    <section>
+      <h2>Facturi emise</h2>
+      <table id="invoices-table">
+        <thead>
+          <tr>
+            <th>Nr.</th>
+            <th>Client</th>
+            <th>Data</th>
+            <th>Status</th>
+            <th class="num">Total</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="invoices-body"></tbody>
+      </table>
+      <p class="empty" id="invoices-empty" style="display:none;">Nicio factură emisă încă.</p>
+    </section>
+  </div>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/ui.js"></script>
+  <script src="/js/invoice.js"></script>
+</body>
+</html>

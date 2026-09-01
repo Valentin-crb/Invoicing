@@ -1,0 +1,324 @@
+/* ============================================================
+   invoicing — shared stylesheet
+   Aesthetic: a ledger book. Hairline rules instead of cards,
+   a deep forest-green accent (traditional "in the black"
+   accounting green), monospace for anything numeric/tabular.
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap');
+
+:root {
+  --paper: #FBFAF6;
+  --paper-line: #E4DFD2;
+  --ink: #1E2530;
+  --ink-muted: #6B6558;
+  --accent: #2F5233;
+  --accent-soft: #E7EDE4;
+  --danger: #A6402A;
+  --danger-soft: #F3E4DF;
+  --pending: #8A6D1F;
+  --pending-soft: #F1EAD4;
+  --radius: 3px;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+body {
+  min-height: 100vh;
+}
+
+.page {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 48px 24px 96px;
+}
+
+/* -------------------- header / nav -------------------- */
+
+.masthead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  border-bottom: 2px solid var(--ink);
+  padding-bottom: 18px;
+  margin-bottom: 8px;
+}
+
+.masthead h1 {
+  font-family: 'Source Serif 4', serif;
+  font-weight: 600;
+  font-size: 28px;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.masthead .ledger-no {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  color: var(--ink-muted);
+}
+
+nav.tabs {
+  display: flex;
+  gap: 0;
+  margin-bottom: 40px;
+  border-bottom: 1px solid var(--paper-line);
+}
+
+nav.tabs a {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 13px;
+  color: var(--ink-muted);
+  text-decoration: none;
+  padding: 10px 16px 10px 0;
+  margin-right: 20px;
+  border-bottom: 2px solid transparent;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+nav.tabs a:hover {
+  color: var(--ink);
+}
+
+nav.tabs a.active {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+/* -------------------- sections -------------------- */
+
+section {
+  margin-bottom: 44px;
+}
+
+section > h2 {
+  font-family: 'Source Serif 4', serif;
+  font-weight: 600;
+  font-size: 17px;
+  margin: 0 0 16px;
+  color: var(--ink);
+}
+
+.hint {
+  font-size: 13px;
+  color: var(--ink-muted);
+  margin: -8px 0 20px;
+}
+
+/* -------------------- forms -------------------- */
+
+label {
+  display: block;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--ink-muted);
+  margin-bottom: 5px;
+}
+
+input, select {
+  width: 100%;
+  font-family: inherit;
+  font-size: 14px;
+  color: var(--ink);
+  background: #fff;
+  border: 1px solid var(--paper-line);
+  border-radius: var(--radius);
+  padding: 9px 11px;
+}
+
+input:focus, select:focus, button:focus, a:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+input:read-only {
+  background: var(--accent-soft);
+  color: var(--ink-muted);
+}
+
+.field {
+  margin-bottom: 16px;
+}
+
+.field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+button {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: var(--radius);
+  padding: 10px 18px;
+  border: 1px solid var(--ink);
+  background: var(--ink);
+  color: var(--paper);
+  transition: opacity 0.15s ease;
+}
+
+button:hover { opacity: 0.82; }
+
+button.secondary {
+  background: transparent;
+  color: var(--ink);
+  border-color: var(--paper-line);
+}
+
+button.link {
+  border: none;
+  background: none;
+  color: var(--accent);
+  padding: 6px 0;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* -------------------- invoice line builder -------------------- */
+
+.line-row {
+  display: grid;
+  grid-template-columns: 1fr 90px 100px 28px;
+  gap: 10px;
+  align-items: end;
+  margin-bottom: 10px;
+}
+
+.line-row .qty-price {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 13px;
+  text-align: right;
+  color: var(--ink-muted);
+  padding-bottom: 9px;
+}
+
+.remove-line {
+  border: none;
+  background: none;
+  color: var(--danger);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 16px;
+  padding: 8px 0;
+  cursor: pointer;
+}
+
+.total-row {
+  display: flex;
+  justify-content: flex-end;
+  align-items: baseline;
+  gap: 10px;
+  border-top: 1px solid var(--paper-line);
+  padding-top: 14px;
+  margin-top: 6px;
+}
+
+.total-row .label {
+  font-size: 13px;
+  color: var(--ink-muted);
+}
+
+.total-row .amount {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+/* -------------------- tables -------------------- */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13.5px;
+}
+
+th {
+  text-align: left;
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 0.02em;
+  color: var(--ink-muted);
+  border-bottom: 1px solid var(--ink);
+  padding: 0 10px 8px 0;
+}
+
+td {
+  padding: 10px 10px 10px 0;
+  border-bottom: 1px solid var(--paper-line);
+  vertical-align: top;
+}
+
+td.num, th.num { text-align: right; font-family: 'IBM Plex Mono', monospace; }
+
+tr:last-child td { border-bottom: none; }
+
+.status-pill {
+  display: inline-block;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 20px;
+}
+
+.status-pending { background: var(--pending-soft); color: var(--pending); }
+.status-paid { background: var(--accent-soft); color: var(--accent); }
+.status-overdue { background: var(--danger-soft); color: var(--danger); }
+
+.row-actions {
+  display: flex;
+  gap: 12px;
+  white-space: nowrap;
+}
+
+.row-actions button {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.row-actions .edit-btn { color: var(--ink-muted); }
+.row-actions .delete-btn { color: var(--danger); }
+
+/* -------------------- feedback -------------------- */
+
+.message {
+  font-size: 13px;
+  padding: 10px 12px;
+  border-radius: var(--radius);
+  margin-bottom: 18px;
+  display: none;
+}
+
+.message.show { display: block; }
+.message.ok { background: var(--accent-soft); color: var(--accent); }
+.message.error { background: var(--danger-soft); color: var(--danger); }
+
+.empty {
+  font-size: 13px;
+  color: var(--ink-muted);
+  font-style: italic;
+  padding: 8px 0;
+}
+
+@media (max-width: 560px) {
+  .field-row { grid-template-columns: 1fr; }
+  .line-row { grid-template-columns: 1fr; }
+  .line-row .qty-price { text-align: left; }
+}
