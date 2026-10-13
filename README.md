@@ -2,6 +2,8 @@
 
 A backend invoicing system built with Spring Boot, PostgreSQL, and a small vanilla JS frontend — built as a portfolio project to learn backend Java development.
 
+**Live Demo:** [invoicing-b5s5.onrender.com](https://invoicing-b5s5.onrender.com/index.html)
+
 ## What it does
 
 Manage clients and products, then issue invoices that combine them into line items with quantities. Prices are captured at the moment an invoice is created (not read live from the product), so past invoices stay accurate even if a product's price changes later. Invoices track a status (`PENDING`, `PAID`, `OVERDUE`) that can be updated independently of the rest of the invoice.
