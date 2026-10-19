@@ -37,9 +37,21 @@ const API_BASE = "/api";
  *  3. parsează automat JSON-ul din răspuns
  */
 async function apiRequest(path, { method = "GET", body } = {}) {
+  const headers ={};
+  if(body){
+    headers["Content-Type"] = "application/json"
+  }
+  if(method !== "GET"){
+    const raspuns = await getAccessCode()
+    if(raspuns == null){
+      throw new Error("Actiune anulata")
+    }
+    headers["X-Access-Code"] = raspuns
+
+  }
   const response = await fetch(API_BASE + path, {
     method,
-    headers: body ? { "Content-Type": "application/json" } : undefined,
+    headers,
     body: body ? JSON.stringify(body) : undefined,
   });
 
@@ -52,6 +64,9 @@ async function apiRequest(path, { method = "GET", body } = {}) {
     // Backend-ul tău (ResourceNotFoundException prin @ControllerAdvice)
     // întoarce mesajul de eroare direct ca text/JSON simplu — îl folosim
     // dacă există, altfel dăm un mesaj generic.
+    if(response.status === 403){
+      clearAccessCode();
+    }
     const message = (data && (data.message || data)) || `Eroare ${response.status}`;
     throw new Error(typeof message === "string" ? message : JSON.stringify(message));
   }
